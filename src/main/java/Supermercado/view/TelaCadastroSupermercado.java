@@ -35,6 +35,7 @@ public class TelaCadastroSupermercado extends javax.swing.JFrame {
         jButton1Salvar = new javax.swing.JButton();
         JTextFieldEmail = new javax.swing.JTextField();
         jTextField2Nome = new javax.swing.JTextField();
+        jButton1Voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("TelaCadastroUsuario");
@@ -71,6 +72,14 @@ public class TelaCadastroSupermercado extends javax.swing.JFrame {
             }
         });
 
+        jButton1Voltar.setBackground(new java.awt.Color(255, 255, 102));
+        jButton1Voltar.setText("Voltar ");
+        jButton1Voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1VoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,7 +94,9 @@ public class TelaCadastroSupermercado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(148, 148, 148)
                 .addComponent(jButton1Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,8 +107,10 @@ public class TelaCadastroSupermercado extends javax.swing.JFrame {
                 .addComponent(jTextField2Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3Senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1Salvar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1Voltar, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(jButton1Salvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(175, Short.MAX_VALUE))
         );
 
@@ -132,6 +145,12 @@ public class TelaCadastroSupermercado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
         }
     }//GEN-LAST:event_jButton1SalvarActionPerformed
+
+    private void jButton1VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1VoltarActionPerformed
+        TelaLoginSupermercado telaLoginSupermercado = new TelaLoginSupermercado(this);
+        telaLoginSupermercado.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1VoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,6 +190,7 @@ public class TelaCadastroSupermercado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JTextFieldEmail;
     private javax.swing.JButton jButton1Salvar;
+    private javax.swing.JButton jButton1Voltar;
     private javax.swing.JTextField jTextField2Nome;
     private javax.swing.JTextField jTextField3Senha;
     // End of variables declaration//GEN-END:variables

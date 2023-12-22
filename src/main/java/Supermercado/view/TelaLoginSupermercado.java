@@ -18,12 +18,17 @@ import javax.swing.JOptionPane;
  * @author Thekingolias
  */
 public class TelaLoginSupermercado extends javax.swing.JFrame {
-
+        private TelaCadastroSupermercado telaCadastroSupermercado;
     /**
      * Creates new form TelaLoginSupermercado
      */
     public TelaLoginSupermercado() {
         initComponents();
+    }
+    
+    TelaLoginSupermercado (TelaCadastroSupermercado telaCadastroSupermercado) {
+        initComponents();
+        this.telaCadastroSupermercado = telaCadastroSupermercado;
     }
 
     /**
