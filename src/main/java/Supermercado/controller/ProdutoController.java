@@ -27,15 +27,6 @@ public class ProdutoController {
     public ArrayList<Produto> listarProdutos(String nome) throws ExceptionDAO{
         return new Produto().listarProduto(nome);
     }
-    public boolean alterarProduto(Integer codProduto, String descricao, String preco) throws ParseException, ExceptionDAO{
-        if(descricao ==null && descricao.length() < 0 && preco == null){
-        Produto produto = new Produto(descricao, preco);
-        produto.setCodProduto(codProduto);
-        produto.alterarProduto(produto);
-        return true;
-        }
-        return false;
-    }
     public boolean apagarProduto(int codProduto) throws ExceptionDAO{
         if(codProduto == 0){
             return false;

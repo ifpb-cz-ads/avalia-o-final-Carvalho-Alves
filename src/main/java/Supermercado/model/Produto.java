@@ -56,9 +56,6 @@ public class Produto {
     public ArrayList<Produto> listarProduto(String nome) throws ExceptionDAO{
         return new ProdutoDAO().listarProduto(nome);
     }
-    public void alterarProduto(Produto produto) throws ExceptionDAO{
-        new ProdutoDAO().alterarProduto(produto);
-    }
     public void apagarProduto(Produto produto) throws ExceptionDAO{
         new ProdutoDAO().apagarProduto(produto);
     }

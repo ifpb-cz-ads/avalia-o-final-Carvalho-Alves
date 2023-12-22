@@ -42,6 +42,31 @@ public class ProdutoDAO {
         }
     }
     
+    public void apagarProduto(Produto produto) throws ExceptionDAO {
+        Connection connect = null;
+        try {
+            Conexao conection = new Conexao();
+            connect = conection.getConnection();
+
+            String query = "DELETE FROM PRODUTO WHERE codProduto=?";
+            try (PreparedStatement preparedStatement = connect.prepareStatement(query)) {
+                preparedStatement.setInt(1, produto.getCodProduto());
+                preparedStatement.executeUpdate();
+            }
+            System.out.println("Item removido com sucesso!");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (connect != null) {
+                try {
+                    connect.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
         public ArrayList<Produto> listarProduto(String nome) throws ExceptionDAO {
         String query = "select * from produto where nome like '%" + nome + "%' order by by nome";
         
@@ -84,57 +109,6 @@ public class ProdutoDAO {
     return produtos;
     }
 
-    public void apagarProduto(Produto produto) throws ExceptionDAO {
-        Connection connect = null;
-        try {
-            Conexao conection = new Conexao();
-            connect = conection.getConnection();
+    
 
-            String query = "DELETE FROM PRODUTO WHERE codProduto=?";
-            try (PreparedStatement preparedStatement = connect.prepareStatement(query)) {
-                preparedStatement.setInt(1, produto.getCodProduto());
-                preparedStatement.executeUpdate();
-            }
-            System.out.println("Item removido com sucesso!");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            if (connect != null) {
-                try {
-                    connect.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    public void alterarProduto(Produto produto) throws ExceptionDAO {
-        Connection connect = null;
-        try {
-            Conexao conection = new Conexao();
-            connect = conection.getConnection();
-
-            String query = "UPDATE PRODUTO SET descricao=?, preco=?, WHERE codProduto=?";
-            try (PreparedStatement preparedStatement = connect.prepareStatement(query)) {
-                preparedStatement.setString(1, produto.getDescricao());
-                preparedStatement.setString(2, produto.getPreco());
-                preparedStatement.setInt(4, produto.getCodProduto());
-
-                preparedStatement.executeUpdate();
-            }
-            System.out.println("Item alterado com sucesso!");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            if (connect != null) {
-                try {
-                    connect.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-}
 }

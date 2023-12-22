@@ -6,6 +6,9 @@ package Supermercado.view;
 
 import Supermercado.controller.ProdutoController;
 import Supermercado.controller.UsuarioController;
+import Supermercado.dao.ExceptionDAO;
+import Supermercado.dao.ProdutoDAO;
+import Supermercado.model.Produto;
 import javax.swing.JOptionPane;
 
 /**
@@ -167,7 +170,26 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2SalvarActionPerformed
 
     private void jButton3ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ExcluirActionPerformed
-        // TODO add your handling code here:
+       try {
+        // Obter o código do produto a ser excluído
+        int codProduto = Integer.parseInt(jTextField1Codigo.getText());
+
+        // Criar um objeto Produto com o código
+        Produto produto = new Produto();
+        produto.setCodProduto(codProduto);
+
+        // Chamar o método para apagar o produto
+        new ProdutoDAO().apagarProduto(produto);
+
+        // Limpar o campo de código após a exclusão
+        jTextField1Codigo.setText("");
+
+        System.out.println("Produto excluído com sucesso!");
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Por favor, insira um código de produto válido.");
+    } catch (ExceptionDAO e) {
+        JOptionPane.showMessageDialog(null, "Erro ao excluir o produto: " + e.getMessage());
+    }
     }//GEN-LAST:event_jButton3ExcluirActionPerformed
 
     /**
