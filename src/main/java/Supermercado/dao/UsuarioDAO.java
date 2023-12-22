@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import Supermercado.dao.ExceptionDAO;
 import Supermercado.model.Usuario;
+import java.awt.List;
 
 public class UsuarioDAO{
 public void cadastrarUsuario(Usuario usuario) throws ExceptionDAO{
@@ -35,7 +36,8 @@ public void cadastrarUsuario(Usuario usuario) throws ExceptionDAO{
             }
             System.out.println("Usuario adicionado com sucesso!");
         }catch (SQLException e){
-            throw new RuntimeException(e);
+            
+            throw new RuntimeException("Email Existente! Informe outro");
         }finally {
             if(connect != null){
                 try{
@@ -47,48 +49,50 @@ public void cadastrarUsuario(Usuario usuario) throws ExceptionDAO{
         }
     }
     
-        public ArrayList<Usuario> listarUsuario(String nome) throws ExceptionDAO {
-        String query = "select * from usuario where nome like '%" + nome + "%' order by by nome";
+   
         
-       Connection connect = null;
-       PreparedStatement pStatement = null;
-       ArrayList<Usuario> usuarios = null;
-       
-       try{
-           Conexao conection = new Conexao();
-            connect = conection.getConnection();
-           pStatement = connect.prepareStatement(query);
-           ResultSet rs = pStatement.executeQuery(query);
-           
-           if(rs!=null){
-               usuarios = new ArrayList<Usuario>();
-               while(rs.next()){
-                   Usuario usuario = new Usuario();
-                   usuario.setCodUsuario(rs.getInt("codUsuario"));
-                   usuario.setNome(rs.getString("nome"));
-                   usuario.setEmail(rs.getString("email"));
-                   usuario.setSenha(rs.getString("senha"));
-                   usuarios.add(usuario);
-                   
-               }
-           }
-           
-       } catch (SQLException e) {
-           throw new ExceptionDAO("Error ao consultar o cadastro." + e);
-        }finally{
-           try{
-               if(pStatement!=null) { pStatement.close();}
-           } catch (SQLException e) {
-                throw new ExceptionDAO("Error ao fechar o pStatement:" + e);
-           }
-           try{
-               if(connect!=null) {connect.close();}
-           } catch (SQLException e) {
-                 throw new ExceptionDAO("Error ao fechar conexão:" + e);
-           }
-       }
-    return usuarios;
+        public Usuario buscarUsuarioPorEmail(String email) throws ExceptionDAO {
+    String query = "SELECT * FROM usuario WHERE email = ?";
+    
+    Connection connect = null;
+    PreparedStatement pStatement = null;
+    Usuario usuario = null;
+    
+    try {
+        Conexao conection = new Conexao();
+        connect = conection.getConnection();
+        pStatement = connect.prepareStatement(query);
+        pStatement.setString(1, email);
+        
+        ResultSet rs = pStatement.executeQuery();
+        
+        if (rs != null && rs.next()) {
+            usuario = new Usuario();
+            usuario.setEmail(rs.getString("email"));
+            usuario.setSenha(rs.getString("senha"));
+        }
+        
+    } catch (SQLException e) {
+        throw new ExceptionDAO("Erro ao buscar usuário por email: " + e.getMessage());
+    } finally {
+        try {
+            if (pStatement != null) {
+                pStatement.close();
+            }
+        } catch (SQLException e) {
+            throw new ExceptionDAO("Erro ao fechar o pStatement: " + e.getMessage());
+        }
+        try {
+            if (connect != null) {
+                connect.close();
+            }
+        } catch (SQLException e) {
+            throw new ExceptionDAO("Erro ao fechar conexão: " + e.getMessage());
+        }
     }
+    
+    return usuario;
+}
      
 }
 

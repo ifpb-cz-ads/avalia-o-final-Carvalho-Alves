@@ -9,12 +9,17 @@ package Supermercado.view;
  * @author Thekingolias
  */
 public class TelaMenuSupermercado extends javax.swing.JFrame {
-
+        private TelaLoginSupermercado telaLoginSupermercado;
     /**
      * Creates new form TelaMenuSupermercado
      */
     public TelaMenuSupermercado() {
         initComponents();
+    }
+    
+    TelaMenuSupermercado(TelaLoginSupermercado telaLoginSupermercado) {
+        initComponents();
+        this.telaLoginSupermercado = telaLoginSupermercado;
     }
 
     /**

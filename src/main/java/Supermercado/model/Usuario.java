@@ -64,8 +64,35 @@ public class Usuario {
    public void cadastrarUsuario(Usuario usuario) throws ExceptionDAO{
         new UsuarioDAO().cadastrarUsuario(usuario);
     }
-    
-    public ArrayList<Usuario> listarUsuario(String nome) throws ExceptionDAO{
-        return new UsuarioDAO().listarUsuario(nome);
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.email);
+        hash = 61 * hash + Objects.hashCode(this.senha);
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        return Objects.equals(this.senha, other.senha);
+    }
+    
+    public void  buscarUsuarioPorEmail(String email) throws ExceptionDAO {
+        new UsuarioDAO().buscarUsuarioPorEmail(email);
+    }
+    
 }

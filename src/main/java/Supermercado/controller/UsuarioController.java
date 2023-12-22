@@ -25,7 +25,8 @@ public class UsuarioController {
         }
         return false;
     }
-    public ArrayList<Usuario> listarUsuario(String nome) throws ExceptionDAO{
-        return new Usuario().listarUsuario(nome);
-    }
+    
+    public void  buscarUsuarioPorEmail(String email) throws ExceptionDAO {
+        new UsuarioDAO().buscarUsuarioPorEmail(email);
+}
 }

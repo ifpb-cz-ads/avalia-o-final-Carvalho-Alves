@@ -4,6 +4,15 @@
  */
 package Supermercado.view;
 
+import Supermercado.model.Usuario;
+import Supermercado.controller.UsuarioController;
+import Supermercado.dao.ExceptionDAO;
+import Supermercado.dao.UsuarioDAO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Thekingolias
@@ -110,7 +119,32 @@ public class TelaLoginSupermercado extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2SenhaActionPerformed
 
     private void jButton1EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1EntrarActionPerformed
-        // TODO add your handling code here:
+        String email = jTextField1Email.getText();
+        String senhaChars = jTextField2Senha.getText();
+        String senha = new String(senhaChars);
+
+    try {
+        // Verifica se o usuário existe
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.buscarUsuarioPorEmail(email);
+
+        if (usuario != null && usuario.getSenha().equals(senha)) {
+            // Login bem-sucedido, você pode abrir a próxima janela ou realizar ação desejada
+            JOptionPane.showMessageDialog(null, "Login bem-sucedido!");
+
+            TelaMenuSupermercado telaMenuSupermercado = new TelaMenuSupermercado();
+            telaMenuSupermercado.setVisible(true);
+            this.dispose(); // Fecha a tela de login
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Credenciais inválidas. Tente novamente.");
+        }
+
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Erro durante o login: " + ex.getMessage());
+    }
+
     }//GEN-LAST:event_jButton1EntrarActionPerformed
 
     private void jButton2CriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2CriarContaActionPerformed
@@ -160,4 +194,6 @@ public class TelaLoginSupermercado extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1Email;
     private javax.swing.JTextField jTextField2Senha;
     // End of variables declaration//GEN-END:variables
+
+   
 }
