@@ -4,17 +4,26 @@
  */
 package Supermercado.view;
 
+import Supermercado.controller.ProdutoController;
+import Supermercado.controller.UsuarioController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Thekingolias
  */
 public class TelaCadastroProduto extends javax.swing.JFrame {
-
+       private TelaMenuSupermercado telaMenuSupermercado;
     /**
      * Creates new form TelaCadastroProduto
      */
     public TelaCadastroProduto() {
         initComponents();
+    }
+
+    TelaCadastroProduto(TelaMenuSupermercado telaMenuSupermercado) {
+        initComponents();
+        this.telaMenuSupermercado = telaMenuSupermercado;
     }
 
     /**
@@ -26,21 +35,140 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jTextField1Codigo = new javax.swing.JTextField();
+        jTextField2Descricao = new javax.swing.JTextField();
+        jTextField3Preco = new javax.swing.JTextField();
+        jButton2Salvar = new javax.swing.JButton();
+        jButton3Excluir = new javax.swing.JButton();
+        jButton1Buscar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("TelaCadastroProduto");
+
+        jTextField1Codigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1Codigo.setText("Código");
+        jTextField1Codigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1CodigoActionPerformed(evt);
+            }
+        });
+
+        jTextField2Descricao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField2Descricao.setText("Descrição");
+        jTextField2Descricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2DescricaoActionPerformed(evt);
+            }
+        });
+
+        jTextField3Preco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField3Preco.setText("Preço Unitário");
+        jTextField3Preco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3PrecoActionPerformed(evt);
+            }
+        });
+
+        jButton2Salvar.setBackground(new java.awt.Color(51, 255, 51));
+        jButton2Salvar.setText("Salvar");
+        jButton2Salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2SalvarActionPerformed(evt);
+            }
+        });
+
+        jButton3Excluir.setBackground(new java.awt.Color(255, 0, 0));
+        jButton3Excluir.setText("Excluir");
+        jButton3Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ExcluirActionPerformed(evt);
+            }
+        });
+
+        jButton1Buscar.setBackground(new java.awt.Color(51, 255, 51));
+        jButton1Buscar.setText("Buscar");
+        jButton1Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1BuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField2Descricao)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField1Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1Buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                    .addComponent(jTextField3Preco)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3Excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1Buscar))
+                .addGap(18, 18, 18)
+                .addComponent(jTextField2Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3Preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2Salvar)
+                    .addComponent(jButton3Excluir))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1CodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1CodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1CodigoActionPerformed
+
+    private void jButton1BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1BuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1BuscarActionPerformed
+
+    private void jTextField2DescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2DescricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2DescricaoActionPerformed
+
+    private void jTextField3PrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3PrecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3PrecoActionPerformed
+
+    private void jButton2SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2SalvarActionPerformed
+        boolean sucesso = false;
+        
+        try{
+            ProdutoController produtoController = new ProdutoController();
+            sucesso = produtoController.cadastrarProduto(jTextField2Descricao.getText(),jTextField3Preco.getText());
+            if(sucesso == true){
+                JOptionPane.showMessageDialog(null, "Produto cadastrado!");
+            }else {
+                JOptionPane.showMessageDialog(null, "Preencha corretamente");
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton2SalvarActionPerformed
+
+    private void jButton3ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +206,11 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1Buscar;
+    private javax.swing.JButton jButton2Salvar;
+    private javax.swing.JButton jButton3Excluir;
+    private javax.swing.JTextField jTextField1Codigo;
+    private javax.swing.JTextField jTextField2Descricao;
+    private javax.swing.JTextField jTextField3Preco;
     // End of variables declaration//GEN-END:variables
 }

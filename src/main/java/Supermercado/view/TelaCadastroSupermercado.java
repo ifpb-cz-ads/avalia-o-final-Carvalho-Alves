@@ -4,17 +4,22 @@
  */
 package Supermercado.view;
 
+import Supermercado.controller.UsuarioController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Thekingolias
  */
 public class TelaCadastroSupermercado extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TelaCadastroSupermercado
-     */
+    private TelaLoginSupermercado telaLoginSupermercado;
+    
     public TelaCadastroSupermercado() {
         initComponents();
+    }
+    TelaCadastroSupermercado (TelaLoginSupermercado telaLoginSupermercado) {
+        initComponents();
+        this.telaLoginSupermercado = telaLoginSupermercado;
     }
 
     /**
@@ -26,21 +31,107 @@ public class TelaCadastroSupermercado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jTextField3Senha = new javax.swing.JTextField();
+        jButton1Salvar = new javax.swing.JButton();
+        JTextFieldEmail = new javax.swing.JTextField();
+        jTextField2Nome = new javax.swing.JTextField();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("TelaCadastroUsuario");
+
+        jTextField3Senha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField3Senha.setText("Senha");
+        jTextField3Senha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3SenhaActionPerformed(evt);
+            }
+        });
+
+        jButton1Salvar.setBackground(new java.awt.Color(51, 255, 51));
+        jButton1Salvar.setText("Salvar");
+        jButton1Salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1SalvarActionPerformed(evt);
+            }
+        });
+
+        JTextFieldEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        JTextFieldEmail.setText("E-mail");
+        JTextFieldEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTextFieldEmailActionPerformed(evt);
+            }
+        });
+
+        jTextField2Nome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField2Nome.setText("Nome");
+        jTextField2Nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2NomeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JTextFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addComponent(jTextField2Nome)
+                    .addComponent(jTextField3Senha))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(148, 148, 148)
+                .addComponent(jButton1Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3Senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1Salvar)
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFieldEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTextFieldEmailActionPerformed
+
+    private void jTextField2NomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2NomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2NomeActionPerformed
+
+    private void jTextField3SenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3SenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3SenhaActionPerformed
+
+    private void jButton1SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1SalvarActionPerformed
+        boolean sucesso = false;
+        
+        try{
+            UsuarioController usuarioController = new UsuarioController();
+            sucesso = usuarioController.cadastrarUsuario(jTextField2Nome.getText(),JTextFieldEmail.getText(),jTextField3Senha.getText());
+            if(sucesso == true){
+                JOptionPane.showMessageDialog(null, "Usuario cadastrado!");
+            }else {
+                JOptionPane.showMessageDialog(null, "Preencha corretamente");
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton1SalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +169,9 @@ public class TelaCadastroSupermercado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField JTextFieldEmail;
+    private javax.swing.JButton jButton1Salvar;
+    private javax.swing.JTextField jTextField2Nome;
+    private javax.swing.JTextField jTextField3Senha;
     // End of variables declaration//GEN-END:variables
 }
