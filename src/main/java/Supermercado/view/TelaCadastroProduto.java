@@ -171,17 +171,13 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
 
     private void jButton3ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ExcluirActionPerformed
        try {
-        // Obter o código do produto a ser excluído
         int codProduto = Integer.parseInt(jTextField1Codigo.getText());
 
-        // Criar um objeto Produto com o código
         Produto produto = new Produto();
         produto.setCodProduto(codProduto);
 
-        // Chamar o método para apagar o produto
         new ProdutoDAO().apagarProduto(produto);
 
-        // Limpar o campo de código após a exclusão
         jTextField1Codigo.setText("");
 
         System.out.println("Produto excluído com sucesso!");

@@ -124,17 +124,15 @@ public class TelaLoginSupermercado extends javax.swing.JFrame {
         String senha = new String(senhaChars);
 
     try {
-        // Verifica se o usuário existe
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.buscarUsuarioPorEmail(email);
 
         if (usuario != null && usuario.getSenha().equals(senha)) {
-            // Login bem-sucedido, você pode abrir a próxima janela ou realizar ação desejada
             JOptionPane.showMessageDialog(null, "Login bem-sucedido!");
 
             TelaMenuSupermercado telaMenuSupermercado = new TelaMenuSupermercado();
             telaMenuSupermercado.setVisible(true);
-            this.dispose(); // Fecha a tela de login
+            this.dispose(); 
 
         } else {
             JOptionPane.showMessageDialog(null, "Credenciais inválidas. Tente novamente.");
