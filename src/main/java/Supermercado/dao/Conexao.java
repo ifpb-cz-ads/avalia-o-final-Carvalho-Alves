@@ -48,7 +48,7 @@ CREATE TABLE usuario (
 );
 
 create table produto(
-codProduto int primary key auto_increment,
+codProduto int primary key auto_increment UNIQUE,
 descricao varchar(200) not null,
 preco varchar(20) not null
 );
